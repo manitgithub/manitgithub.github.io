@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manit — Infrastructure · Database · Dev</title>
+<meta name="description" content="Manit — Infrastructure, Database Administration และ Application Development ในสายงาน IT มหาวิทยาลัย">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#262d36; --text:#e6edf3; --muted:#8b949e;
+    --accent:#3fb950; --accent2:#58a6ff; --warn:#d29922;
+    --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'IBM Plex Sans Thai',system-ui,sans-serif;
+  }
+  [data-theme="light"]{
+    --bg:#f6f8fa; --panel:#ffffff; --line:#d0d7de; --text:#1f2328; --muted:#59636e;
+    --accent:#1a7f37; --accent2:#0969da; --warn:#9a6700;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;font-size:16px}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .logo{font-family:var(--mono);font-weight:600;color:var(--text)}
+  .logo span{color:var(--accent)}
+  .links{display:flex;gap:20px;align-items:center;font-size:14px}
+  .links a{color:var(--muted)}
+  .links a:hover{color:var(--text);text-decoration:none}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:12px;cursor:pointer}
+  .btn-ghost:hover{color:var(--text);border-color:var(--muted)}
+
+  /* hero */
+  .hero{padding:96px 0 72px}
+  .prompt{font-family:var(--mono);color:var(--muted);font-size:14px;margin-bottom:16px}
+  .prompt b{color:var(--accent);font-weight:400}
+  h1{font-size:clamp(36px,6vw,56px);line-height:1.15;font-weight:700;letter-spacing:-.5px}
+  h1 .hl{color:var(--accent)}
+  .tagline{margin-top:18px;font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:640px}
+  .cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:600;font-size:15px;border:1px solid var(--line);color:var(--text);background:var(--panel)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn:hover{text-decoration:none;filter:brightness(1.1)}
+  .cursor{display:inline-block;width:10px;height:1.05em;background:var(--accent);vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  /* sections */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:24px}
+  h2::before{content:"## ";color:var(--muted)}
+  .about p{max-width:680px;margin-bottom:14px}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+  .card h3{font-size:17px;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+  .card h3 i{font-style:normal;font-family:var(--mono);color:var(--accent2);font-size:13px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+
+  .projects{display:grid;gap:16px}
+  .proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;transition:border-color .2s,transform .2s}
+  .proj:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .proj-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .proj h3{font-size:19px}
+  .status{font-family:var(--mono);font-size:12px;color:var(--warn)}
+  .status.done{color:var(--accent)}
+  .proj p{color:var(--muted);margin-bottom:12px}
+
+  .timeline{border-left:2px solid var(--line);padding-left:24px;display:grid;gap:28px}
+  .tl{position:relative}
+  .tl::before{content:"";position:absolute;left:-31px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .tl .when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .tl h3{font-size:17px}
+  .tl p{color:var(--muted)}
+
+  .contact{display:flex;gap:12px;flex-wrap:wrap}
+  footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:13px;text-align:center}
+
+  [data-lang="en"] .th, [data-lang="th"] .en{display:none}
+  @media (max-width:640px){.links a{display:none}.hero{padding:64px 0 48px}}
+</style>
+</head>
+<body data-lang="th">
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">manit<span>@</span>dev:~$</a>
+    <div class="links">
+      <a href="#about"><span class="th">เกี่ยวกับ</span><span class="en">About</span></a>
+      <a href="#skills"><span class="th">ทักษะ</span><span class="en">Skills</span></a>
+      <a href="#projects"><span class="th">ผลงาน</span><span class="en">Projects</span></a>
+      <a href="#contact"><span class="th">ติดต่อ</span><span class="en">Contact</span></a>
+      <button class="btn-ghost" id="langBtn">EN</button>
+      <button class="btn-ghost" id="themeBtn" aria-label="toggle theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="prompt"><b>$</b> whoami</div>
+  <h1>
+    <span class="th">สวัสดีครับ ผม <span class="hl">Manit</span></span>
+    <span class="en">Hi, I'm <span class="hl">Manit</span></span>
+    <span class="cursor"></span>
+  </h1>
+  <p class="tagline">
+    <span class="th">ดูแล Infrastructure, Database และพัฒนาระบบสารสนเทศในมหาวิทยาลัย — ชอบเอา AI และ automation มาช่วยให้งานเดิม ๆ เร็วขึ้น</span>
+    <span class="en">Infrastructure, database administration and application development in a university IT environment — into using AI and automation to make everyday work faster.</span>
+  </p>
+  <div class="cta">
+    <a class="btn primary" href="#projects"><span class="th">ดูผลงาน</span><span class="en">See projects</span></a>
+    <a class="btn" href="https://github.com/manitgithub" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about" class="about">
+    <h2><span class="th">เกี่ยวกับ</span><span class="en">About</span></h2>
+    <p class="th">ผมทำงานด้านเทคนิคในองค์กรมหาวิทยาลัย ครอบคลุมตั้งแต่การวางระบบเซิร์ฟเวอร์ การดูแลฐานข้อมูล ไปจนถึงการพัฒนาแอปพลิเคชันที่ใช้งานจริงในหน่วยงาน</p>
+    <p class="th">ช่วงหลังสนใจเรื่องการนำ AI มาใช้ในระดับองค์กร เช่น การออกแบบ AI Gateway กลาง และการสร้าง workflow อัตโนมัติด้วย LLM</p>
+    <p class="en">I work on the technical side of a university organization — from server infrastructure and database administration to building applications used across departments.</p>
+    <p class="en">Lately I've been focused on bringing AI into the organization: designing a central AI Gateway and building LLM-powered automation workflows.</p>
+  </section>
+
+  <section id="skills">
+    <h2><span class="th">ทักษะ</span><span class="en">Skills</span></h2>
+    <div class="skills">
+      <div class="card">
+        <h3><i>01</i> Infrastructure</h3>
+        <div class="tags"><span class="tag">Linux</span><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Networking</span><span class="tag">Virtualization</span></div>
+      </div>
+      <div class="card">
+        <h3><i>02</i> Database</h3>
+        <div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Backup / Recovery</span><span class="tag">Tuning</span></div>
+      </div>
+      <div class="card">
+        <h3><i>03</i> Development</h3>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">REST API</span><span class="tag">Chrome Extension</span></div>
+      </div>
+      <div class="card">
+        <h3><i>04</i> AI &amp; Automation</h3>
+        <div class="tags"><span class="tag">LiteLLM</span><span class="tag">OpenRouter</span><span class="tag">n8n</span><span class="tag">Claude</span><span class="tag">Prompt Eng.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2><span class="th">ผลงาน</span><span class="en">Projects</span></h2>
+    <div class="projects">
+      <article class="proj">
+        <div class="proj-head"><h3>University AI Gateway</h3><span class="status">● pilot</span></div>
+        <p class="th">ออกแบบ Gateway กลางสำหรับให้บุคลากรใช้งาน LLM หลายค่ายผ่านจุดเดียว จัดการ key, โควตา และค่าใช้จ่ายรายหน่วยงาน</p>
+        <p class="en">A central gateway giving staff access to multiple LLM providers through one endpoint, with key management, quotas and per-department cost tracking.</p>
+        <div class="tags"><span class="tag">LiteLLM</span><span class="tag">OpenRouter</span><span class="tag">Docker</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-head"><h3>n8n × Claude Workflow</h3><span class="status done">● running</span></div>
+        <p class="th">Workflow อัตโนมัติรับข้อมูลผ่าน webhook แล้วใช้ Claude เป็น AI agent ประมวลผลและจัดการข้อมูลผู้เข้าร่วม</p>
+        <p class="en">Webhook-driven automation that uses Claude as an AI agent to process and organize participant data.</p>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">Claude API</span><span class="tag">Webhook</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-head"><h3>Claude Usage Extension</h3><span class="status">● side project</span></div>
+        <p class="th">Chrome extension แสดงสถิติการใช้งาน Claude ให้เห็นได้ทันทีบนเบราว์เซอร์</p>
+        <p class="en">A Chrome extension that surfaces Claude usage stats right in the browser.</p>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">Manifest V3</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2><span class="th">ประสบการณ์</span><span class="en">Experience</span></h2>
+    <div class="timeline">
+      <div class="tl">
+        <div class="when">20XX — <span class="th">ปัจจุบัน</span><span class="en">Present</span></div>
+        <h3><span class="th">ตำแหน่งของคุณ · ชื่อหน่วยงาน</span><span class="en">Your Title · Organization</span></h3>
+        <p><span class="th">ดูแลโครงสร้างพื้นฐาน ฐานข้อมูล และพัฒนาระบบสารสนเทศ</span><span class="en">Infrastructure, databases and information-system development.</span></p>
+      </div>
+      <div class="tl">
+        <div class="when">20XX — 20XX</div>
+        <h3><span class="th">ตำแหน่งก่อนหน้า · หน่วยงาน</span><span class="en">Previous Role · Organization</span></h3>
+        <p><span class="th">รายละเอียดงานโดยย่อ</span><span class="en">Short description.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2><span class="th">ติดต่อ</span><span class="en">Contact</span></h2>
+    <div class="contact">
+      <a class="btn" href="mailto:you@example.com">✉ Email</a>
+      <a class="btn" href="https://github.com/manitgithub" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>© <span id="yr"></span> Manit · built with plain HTML, hosted on GitHub Pages</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const body = document.body, html = document.documentElement;
+  const store = { get:k=>{try{return localStorage.getItem(k)}catch(e){return null}}, set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}} };
+
+  function setLang(l){ body.dataset.lang=l; html.lang=l; langBtn.textContent = l==='th'?'EN':'TH'; store.set('lang',l); }
+  function setTheme(t){ t==='light'?html.dataset.theme='light':delete html.dataset.theme; store.set('theme',t); }
+
+  const langBtn = document.getElementById('langBtn');
+  langBtn.onclick = ()=> setLang(body.dataset.lang==='th'?'en':'th');
+  document.getElementById('themeBtn').onclick = ()=> setTheme(html.dataset.theme==='light'?'dark':'light');
+
+  setLang(store.get('lang') || 'th');
+  setTheme(store.get('theme') || (matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+</script>
+</body>
+</html>
