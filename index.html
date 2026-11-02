@@ -52,6 +52,18 @@
   .cursor{display:inline-block;width:10px;height:1.05em;background:var(--accent);vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
 
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+  .avatar{position:relative;width:260px;height:260px;flex-shrink:0}
+  .avatar::before{content:"";position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,var(--accent),var(--accent2),transparent 60%,var(--accent));animation:spin 6s linear infinite;filter:blur(.5px)}
+  .avatar::after{content:"";position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);z-index:-1}
+  .avatar .ph{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:var(--panel);border:5px solid var(--bg);display:grid;place-items:center}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  .avatar .ini{font-size:96px;font-weight:700;color:var(--accent)}
+  .avatar .badge-online{position:absolute;right:10px;bottom:22px;z-index:2;font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line);color:var(--accent);padding:4px 10px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .avatar .badge-online::before{content:"●";margin-right:6px;animation:blink 1.6s steps(1) infinite}
+  .avatar .code-tag{position:absolute;left:-18px;top:18px;z-index:2;font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line);color:var(--accent2);padding:4px 10px;border-radius:6px;transform:rotate(-6deg);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (max-width:760px){.hero-grid{grid-template-columns:1fr}.avatar{width:180px;height:180px;order:-1;margin:0 auto 8px}.avatar .ini{font-size:64px}}
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:44px}
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
   .stat b{display:block;font-family:var(--mono);font-size:30px;color:var(--accent);line-height:1.2}
@@ -120,6 +132,8 @@
 </nav>
 
 <header class="hero wrap">
+ <div class="hero-grid">
+ <div>
   <div class="prompt"><b>$</b> whoami</div>
   <h1>สวัสดีครับ ผม <span class="hl">มานิต</span><span class="cursor"></span></h1>
   <div class="role">Full-Stack Developer &amp; Creative Problem Solver</div>
@@ -133,6 +147,13 @@
     <a class="btn" href="#contact">ปรึกษาโปรเจกต์</a>
     <a class="btn" href="https://github.com/manitgithub" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
+  </div>
+  <div class="avatar">
+    <div class="ph"><img src="https://github.com/manitgithub.png?size=520" alt="มานิต" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ini',textContent:'ม'}))"></div>
+    <span class="code-tag">&lt;dev /&gt;</span>
+    <span class="badge-online">available for freelance</span>
+  </div>
+ </div>
   <div class="stats">
     <div class="stat"><b>10+</b><span>ปี ประสบการณ์</span></div>
     <div class="stat"><b>50+</b><span>ระบบที่พัฒนา</span></div>
