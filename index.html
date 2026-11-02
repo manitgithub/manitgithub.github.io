@@ -27,6 +27,23 @@
   a:hover{text-decoration:underline}
   .wrap{max-width:980px;margin:0 auto;padding:0 24px}
 
+  /* background layers */
+  .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 60% at 50% 20%,#000 30%,transparent 80%)}
+  .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:float 18s ease-in-out infinite}
+  .orb.a{width:520px;height:520px;background:var(--accent);top:-160px;right:-120px}
+  .orb.b{width:460px;height:460px;background:var(--accent2);bottom:-180px;left:-140px;animation-delay:-9s}
+  .orb.c{width:300px;height:300px;background:#a371f7;top:45%;left:55%;opacity:.14;animation-delay:-5s}
+  [data-theme="light"] .orb{opacity:.16}
+  [data-theme="light"] .orb.c{opacity:.08}
+  #net{position:absolute;inset:0;width:100%;height:100%}
+  .code-float{position:absolute;font-family:var(--mono);font-size:13px;color:var(--muted);opacity:.22;white-space:pre;animation:drift 26s linear infinite}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.08)}}
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-60px)}}
+  section,.card,.proj,.stat{position:relative}
+  .card,.proj,.stat{background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(6px)}
+  @media (prefers-reduced-motion:reduce){.orb,.code-float,.avatar::before{animation:none}}
+  @media (max-width:760px){.code-float{display:none}}
   nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
   .logo{font-family:var(--mono);font-weight:600;color:var(--text)}
@@ -116,6 +133,20 @@
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true">
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+  <div class="bg-grid"></div>
+  <canvas id="net"></canvas>
+  <div class="code-float" style="top:14%;left:3%">SELECT *
+  FROM systems
+ WHERE built &gt; 50;</div>
+  <div class="code-float" style="top:62%;left:4%;animation-delay:-8s">$ git push origin main</div>
+  <div class="code-float" style="top:38%;right:3%;animation-delay:-14s">const dev = {
+  php: true,
+  react: true
+};</div>
+  <div class="code-float" style="top:82%;right:6%;animation-delay:-4s">docker compose up -d</div>
+</div>
 
 <nav>
   <div class="wrap">
@@ -311,6 +342,33 @@ const store = { get:k=>{try{return localStorage.getItem(k)}catch(e){return null}
 function setTheme(t){ t==='light' ? html.dataset.theme='light' : delete html.dataset.theme; store.set('theme',t); }
 document.getElementById('themeBtn').onclick = () => setTheme(html.dataset.theme==='light'?'dark':'light');
 setTheme(store.get('theme') || (matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+
+// particle network background
+(() => {
+  const c = document.getElementById('net'), x = c.getContext('2d');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let W, H, pts = [], dpr = Math.min(devicePixelRatio || 1, 2);
+  const N = () => Math.min(70, Math.floor(innerWidth * innerHeight / 22000));
+  function size(){ W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr;
+    pts = Array.from({length:N()}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.25*dpr, vy:(Math.random()-.5)*.25*dpr})); }
+  const col = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#3fb950';
+  let color = col(); new MutationObserver(() => color = col()).observe(document.documentElement, {attributes:true});
+  const mouse = {x:-1e9, y:-1e9};
+  addEventListener('mousemove', e => { mouse.x = e.clientX*dpr; mouse.y = e.clientY*dpr; });
+  function tick(){
+    x.clearRect(0,0,W,H); const R = 140*dpr;
+    for (const p of pts){ p.x += p.vx; p.y += p.vy; if (p.x<0||p.x>W) p.vx*=-1; if (p.y<0||p.y>H) p.vy*=-1; }
+    x.strokeStyle = color; x.fillStyle = color;
+    for (let i=0;i<pts.length;i++){ const a = pts[i];
+      for (let j=i+1;j<pts.length;j++){ const b = pts[j], d = Math.hypot(a.x-b.x, a.y-b.y);
+        if (d<R){ x.globalAlpha = (1-d/R)*.25; x.lineWidth = dpr*.8; x.beginPath(); x.moveTo(a.x,a.y); x.lineTo(b.x,b.y); x.stroke(); } }
+      const dm = Math.hypot(a.x-mouse.x, a.y-mouse.y);
+      if (dm<R*1.4){ x.globalAlpha = (1-dm/(R*1.4))*.5; x.beginPath(); x.moveTo(a.x,a.y); x.lineTo(mouse.x,mouse.y); x.stroke(); }
+      x.globalAlpha = .55; x.beginPath(); x.arc(a.x,a.y,1.6*dpr,0,7); x.fill(); }
+    x.globalAlpha = 1; requestAnimationFrame(tick);
+  }
+  size(); addEventListener('resize', size); tick();
+})();
 </script>
 </body>
 </html>
