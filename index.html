@@ -128,6 +128,36 @@
   .tl ul{color:var(--muted);padding-left:18px;margin-top:4px}
 
   .contact{display:flex;gap:12px;flex-wrap:wrap}
+  /* coffee */
+  .coffee{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+  .coffee .card{padding:26px}
+  .coffee h3{font-size:22px;margin-bottom:6px}
+  .coffee .sub{color:var(--muted);margin-bottom:20px}
+  .cups{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+  .cup{cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:12px 6px;text-align:center;font-family:var(--sans);transition:all .15s}
+  .cup:hover{border-color:var(--accent)}
+  .cup.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  .cup .ic{font-size:22px;display:block;line-height:1.3}
+  .cup b{display:block;font-size:15px}
+  .cup small{color:var(--muted);font-size:12px}
+  .custom{display:flex;flex-wrap:wrap;align-items:center;gap:10px;white-space:nowrap;margin-bottom:18px;color:var(--muted);font-size:14px}
+  .stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .stepper button{background:var(--bg);border:none;color:var(--text);width:36px;height:36px;font-size:18px;cursor:pointer}
+  .stepper button:hover{background:var(--track)}
+  .stepper input{width:56px;height:36px;border:none;border-left:1px solid var(--line);border-right:1px solid var(--line);background:var(--panel);color:var(--text);text-align:center;font-family:var(--mono);font-size:15px;-moz-appearance:textfield}
+  .stepper input::-webkit-inner-spin-button{-webkit-appearance:none}
+  .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:16px}
+  .total span{color:var(--muted)}
+  .total b{font-family:var(--mono);font-size:30px;color:var(--accent)}
+  .qrbox{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+  .pp-head{background:#003d6a;color:#fff;font-weight:700;letter-spacing:.5px;padding:6px 16px;border-radius:8px 8px 0 0;width:240px;font-size:14px}
+  .qr{background:#fff;padding:14px;border-radius:0 0 8px 8px;width:240px;height:240px;display:grid;place-items:center;margin-top:-10px}
+  .qr svg,.qr img{width:100%;height:100%;display:block}
+  .qr-amt{font-family:var(--mono);font-size:20px;font-weight:600}
+  .qr-to{color:var(--muted);font-size:13px}
+  .steam{display:inline-block;animation:steam 2s ease-in-out infinite}
+  @keyframes steam{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @media (max-width:760px){.coffee{grid-template-columns:1fr}.cups{grid-template-columns:repeat(2,1fr)}}
   footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:13px;text-align:center}
   @media (max-width:640px){.links a{display:none}.hero{padding-top:60px;padding-bottom:40px}}
 </style>
@@ -157,6 +187,7 @@
       <a href="#projects">ผลงาน</a>
       <a href="#experience">ประสบการณ์</a>
       <a href="#contact">ติดต่อ</a>
+      <a href="#coffee" style="color:var(--accent)">☕ เลี้ยงกาแฟ</a>
       <button class="btn-ghost" id="themeBtn" aria-label="สลับธีม">◐</button>
     </div>
   </div>
@@ -176,6 +207,7 @@
   <div class="cta">
     <a class="btn primary" href="#projects">ดูผลงาน</a>
     <a class="btn" href="#contact">ปรึกษาโปรเจกต์</a>
+    <a class="btn" href="#coffee">☕ เลี้ยงกาแฟผม</a>
     <a class="btn" href="https://github.com/manitgithub" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
   </div>
@@ -277,6 +309,33 @@
     </div>
   </section>
 
+  <section id="coffee">
+    <h2>Buy me a coffee</h2>
+    <div class="coffee">
+      <div class="card">
+        <h3><span class="steam">☕</span> เลี้ยงกาแฟผมสักแก้ว</h3>
+        <p class="sub">ถ้าผลงานหรือคำแนะนำของผมมีประโยชน์ เลี้ยงกาแฟเป็นกำลังใจได้นะครับ ขอบคุณมากครับ 🙏</p>
+        <div class="cups" id="cups"></div>
+        <div class="custom">
+          <span>หรือเลือกเอง</span>
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="ลด">−</button>
+            <input type="number" id="qty" min="1" max="99" value="1" aria-label="จำนวนแก้ว">
+            <button type="button" id="plus" aria-label="เพิ่ม">+</button>
+          </div>
+          <span>แก้ว × <b id="unit"></b> บาท</span>
+        </div>
+        <div class="total"><span>รวม</span><b id="total"></b></div>
+      </div>
+      <div class="card qrbox">
+        <div class="pp-head">PromptPay · พร้อมเพย์</div>
+        <div class="qr" id="qr"></div>
+        <div class="qr-amt" id="qrAmt"></div>
+        <div class="qr-to">สแกนด้วยแอปธนาคารใดก็ได้ · โอนเข้า 093-146-4976</div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>© <span id="yr"></span> มานิต · hosted on GitHub Pages</footer>
@@ -368,6 +427,43 @@ setTheme(store.get('theme') || (matchMedia('(prefers-color-scheme: light)').matc
     x.globalAlpha = 1; requestAnimationFrame(tick);
   }
   size(); addEventListener('resize', size); tick();
+})();
+</script>
+<script src="qrcode.js"></script>
+<script>
+// Buy me a coffee — PromptPay QR (EMVCo)
+(() => {
+  const PHONE = '0931464976', PRICE = 50;
+  const OPTIONS = [[1,'☕','แก้วเดียว'],[2,'☕☕','สองแก้ว'],[3,'🍰','กาแฟ+เค้ก'],[5,'🚀','ทั้งทีม']];
+  const f = (id, v) => id + String(v.length).padStart(2,'0') + v;
+  function crc16(str){ let crc = 0xFFFF;
+    for (const b of new TextEncoder().encode(str)) { crc ^= b << 8;
+      for (let i=0;i<8;i++) crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) & 0xFFFF : (crc << 1) & 0xFFFF; }
+    return crc.toString(16).toUpperCase().padStart(4,'0'); }
+  function payload(amount){
+    const acct = '0066' + PHONE.replace(/^0/,'');
+    let p = f('00','01') + f('01','12') + f('29', f('00','A000000677010111') + f('01', acct))
+          + f('53','764') + f('54', amount.toFixed(2)) + f('58','TH') + '6304';
+    return p + crc16(p);
+  }
+  const $ = id => document.getElementById(id);
+  const qty = $('qty'); $('unit').textContent = PRICE;
+  $('cups').innerHTML = OPTIONS.map(([n,ic,l]) =>
+    `<button type="button" class="cup" data-n="${n}"><span class="ic">${ic}</span><b>${n} แก้ว</b><small>${l} · ${n*PRICE}฿</small></button>`).join('');
+  function render(){
+    let n = Math.max(1, Math.min(99, parseInt(qty.value) || 1)); qty.value = n;
+    const amt = n * PRICE;
+    document.querySelectorAll('.cup').forEach(c => c.classList.toggle('on', +c.dataset.n === n));
+    $('total').textContent = amt.toLocaleString('th-TH') + ' ฿';
+    $('qrAmt').textContent = '฿ ' + amt.toLocaleString('th-TH', {minimumFractionDigits:2});
+    if (window.qrcode) { const q = qrcode(0, 'M'); q.addData(payload(amt)); q.make();
+      $('qr').innerHTML = q.createSvgTag({cellSize:4, margin:0, scalable:true}); }
+  }
+  $('cups').addEventListener('click', e => { const b = e.target.closest('.cup'); if (b) { qty.value = b.dataset.n; render(); } });
+  $('minus').onclick = () => { qty.value = (+qty.value||1) - 1; render(); };
+  $('plus').onclick = () => { qty.value = (+qty.value||1) + 1; render(); };
+  qty.addEventListener('input', render);
+  window.__pp = payload; render();
 })();
 </script>
 </body>
