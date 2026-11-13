@@ -7,6 +7,7 @@ window.SITE = {
     github: 'https://github.com/manitgithub',
     facebook: 'https://www.facebook.com/charib.chipchip',
     appkm: 'https://appkm.com',
+    qda: 'https://nurseapp.hccrg.org/',
   },
 
   t: {
@@ -24,6 +25,7 @@ window.SITE = {
         skills:  ['ทักษะ', ''],
         journey: ['เส้นทาง', ''],
         coffee:  ['เลี้ยงกาแฟ', ''],
+        qda:     ['ระบบวิเคราะห์ข้อมูลเชิงคุณภาพ', ''],
       },
       projectsCount: 'ระบบ',
       yrs: 'ปี', systems: 'ระบบ',
@@ -50,6 +52,11 @@ window.SITE = {
         scan: 'สแกนด้วยแอปธนาคารใดก็ได้',
         opts: ['แก้วเดียว', 'สองแก้ว', 'กาแฟ+เค้ก', 'ทั้งทีม'],
       },
+      qda: {
+        eyebrow: 'Featured system', title: 'ระบบวิเคราะห์ <span>ข้อมูลเชิงคุณภาพ</span>',
+        p: 'ระบบช่วยจัดการและวิเคราะห์ข้อมูลเชิงคุณภาพสำหรับงานวิจัย ช่วยให้นักวิจัยรวบรวม จัดหมวดหมู่ และสรุปผลข้อมูลได้เป็นระบบในที่เดียว',
+        open: 'เปิดใช้งานระบบ', mini: 'เปิดระบบ',
+      },
       levels: ['พอได้', 'ถนัด', 'ชำนาญ', 'เชี่ยวชาญ'],
     },
     en: {
@@ -66,6 +73,7 @@ window.SITE = {
         skills:  ['Tech Stack', ''],
         journey: ['Journey', ''],
         coffee:  ['Buy me a coffee', ''],
+        qda:     ['Qualitative Data Analysis', ''],
       },
       projectsCount: 'systems',
       yrs: 'yrs', systems: 'systems',
@@ -91,6 +99,11 @@ window.SITE = {
         custom: 'or pick', cups: 'cups', baht: 'THB', total: 'Total',
         scan: 'Scan with any Thai banking app',
         opts: ['One cup', 'Two cups', 'Coffee + cake', 'The whole team'],
+      },
+      qda: {
+        eyebrow: 'Featured system', title: 'Qualitative <span>Data Analysis</span>',
+        p: 'A system for managing and analysing qualitative research data — helping researchers collect, code and summarise their findings in one place.',
+        open: 'Open the system', mini: 'Open',
       },
       levels: ['Familiar', 'Proficient', 'Advanced', 'Expert'],
     },
