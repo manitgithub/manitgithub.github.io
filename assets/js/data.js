@@ -27,6 +27,7 @@ window.SITE = {
         journey: ['เส้นทาง', ''],
         coffee:  ['เลี้ยงกาแฟ', ''],
         qda:     ['ระบบวิเคราะห์ข้อมูลเชิงคุณภาพ', ''],
+        talks:   ['วิทยากร / นำเสนอผลงาน', ''],
       },
       projectsCount: 'ระบบ',
       yrs: 'ปี', systems: 'ระบบ',
@@ -58,6 +59,7 @@ window.SITE = {
         p: 'ระบบช่วยจัดการและวิเคราะห์ข้อมูลเชิงคุณภาพสำหรับงานวิจัย ช่วยให้นักวิจัยรวบรวม จัดหมวดหมู่ และสรุปผลข้อมูลได้เป็นระบบในที่เดียว',
         open: 'เปิดใช้งานระบบ', mini: 'เปิดระบบ',
       },
+      talks: { eyebrow: 'Talks & showcases', title: 'วิทยากร / <span>นำเสนอผลงาน</span>', speaker: 'วิทยากร', showcase: 'นำเสนอผลงาน', miniA: 'วิทยากร', miniB: 'นำเสนอผลงาน' },
       levels: ['พอได้', 'ถนัด', 'ชำนาญ', 'เชี่ยวชาญ'],
     },
     en: {
@@ -75,6 +77,7 @@ window.SITE = {
         journey: ['Journey', ''],
         coffee:  ['Buy me a coffee', ''],
         qda:     ['Qualitative Data Analysis', ''],
+        talks:   ['Talks & Showcases', ''],
       },
       projectsCount: 'systems',
       yrs: 'yrs', systems: 'systems',
@@ -106,6 +109,7 @@ window.SITE = {
         p: 'A system for managing and analysing qualitative research data — helping researchers collect, code and summarise their findings in one place.',
         open: 'Open the system', mini: 'Open',
       },
+      talks: { eyebrow: 'Talks & showcases', title: 'Talks & <span>showcases</span>', speaker: 'Speaker / trainer', showcase: 'Innovation showcases', miniA: 'Trainings', miniB: 'Showcases' },
       levels: ['Familiar', 'Proficient', 'Advanced', 'Expert'],
     },
   },
@@ -140,6 +144,19 @@ window.SITE = {
     ['ภาครัฐ · เลือกตั้ง · เกษตร', ['ระบบเลือกตั้งออนไลน์', 'ระบบรายงานผลคะแนนเลือกตั้งท้องถิ่น', 'ระบบประกาศราคากลาง', 'ระบบรับซื้อไม้ยางพารา', 'ระบบรับซื้อน้ำยางพารา', 'ระบบงานพืชสวนโลก']],
     ['อื่น ๆ', ['ระบบย่อลิงค์', 'ระบบจัดเก็บข้อมูลสื่อ']],
   ],
+
+  talks: {
+    speaker: [
+      ['6 ส.ค. 2568', 'หลักสูตร “เร่งประสิทธิภาพการเรียนของคุณด้วย Generative AI : ChatGPT คู่หูการเรียนรู้ของคุณ”', ''],
+      ['22 ก.ค. 2568', 'หลักสูตร “Easy AI : เรียนง่าย ใช้เป็น”', 'ให้แก่นักศึกษา วิทยาลัยนาฏศิลปนครศรีธรรมราช'],
+      ['20 ส.ค. 2563', 'อบรมการใช้งานระบบบัณฑิตคนดี (S.T.U.A.C.T.)', 'ให้แก่บุคลากรส่วนกิจการนักศึกษา'],
+    ],
+    showcase: [
+      ['2026', 'WU Innovation Day 2026', 'นำเสนอนวัตกรรม / กระบวนการพัฒนาการทำงาน'],
+      ['2025', 'WU Innovation Day 2025', 'นำเสนอนวัตกรรม / กระบวนการพัฒนาการทำงาน'],
+      ['2024', 'WU Innovation Day 2024', 'นำเสนอนวัตกรรม / กระบวนการพัฒนาการทำงาน'],
+    ],
+  },
 
   journey: {
     th: [

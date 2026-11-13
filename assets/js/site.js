@@ -3,9 +3,9 @@
   const store = { get: k => { try { return localStorage.getItem(k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem(k, v) } catch (e) {} } };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const AVATAR = `https://github.com/${S.github}.png?size=200`;
-  const ORDER = ['about', 'work', 'contact', 'skills', 'journey', 'coffee', 'qda'];
-  const ICON = { about: `<img src="${AVATAR}" alt="" onerror="this.replaceWith('👋')">`, work: '🧩', contact: '💬', skills: '⚡', journey: '🕒', coffee: '☕', qda: '🔬' };
-  const COLOR = { about: 'var(--blue)', work: 'var(--violet)', contact: 'var(--cyan)', skills: 'var(--blue)', journey: 'var(--amber)', coffee: 'var(--pink)', qda: 'var(--green)' };
+  const ORDER = ['about', 'work', 'contact', 'skills', 'journey', 'coffee', 'qda', 'talks'];
+  const ICON = { about: `<img src="${AVATAR}" alt="" onerror="this.replaceWith('👋')">`, work: '🧩', contact: '💬', skills: '⚡', journey: '🕒', coffee: '☕', qda: '🔬', talks: '🎤' };
+  const COLOR = { about: 'var(--blue)', work: 'var(--violet)', contact: 'var(--cyan)', skills: 'var(--blue)', journey: 'var(--amber)', coffee: 'var(--pink)', qda: 'var(--green)', talks: 'var(--gold)' };
   let lang = new URLSearchParams(location.search).get('lang') || store.get('lang') || 'th';
   let current = null, lastFocus = null;
   const T = () => S.t[lang];
@@ -30,6 +30,7 @@
     if (k === 'journey') return `<div class="mini"><div class="tl"><span>2009<small>ปากพูน</small></span><span>2015<small>WU</small></span><span>${lang === 'th' ? 'ตอนนี้' : 'Now'}<small>SA</small></span></div></div>`;
     if (k === 'contact') return `<div class="mini"><div class="row"><b style="--rc:#1f8f4e">📞</b>093-146-4976</div><div class="row"><b style="--rc:#06c755">L</b>LINE</div><div class="row"><b style="--rc:#1877f2">f</b>Facebook</div><div class="row"><b style="--rc:#111;box-shadow:inset 0 0 0 1px #25f4ee">♪</b>TikTok</div></div>`;
     if (k === 'coffee') return `<div class="mini"><div class="qrmini"><i>▦</i><span>${t.coffeeMini}</span></div></div>`;
+    if (k === 'talks') return `<div class="mini"><div class="row"><b style="--rc:#b8860b">🎤</b>${t.talks.miniA} ×${S.talks.speaker.length}</div><div class="row"><b style="--rc:#7b4dff">🏆</b>${t.talks.miniB} ×${S.talks.showcase.length}</div></div>`;
     if (k === 'qda') return `<div class="mini"><div class="row" style="justify-content:center"><b style="--rc:#13a37a">🔗</b>${t.qda.mini} ↗</div></div>`;
     if (k === 'work') return `<p style="margin-top:8px;font-weight:600;color:#fff">${projectTotal} ${t.projectsCount}</p>`;
     return '';
@@ -40,7 +41,7 @@
       <button class="card" data-k="${k}" aria-haspopup="dialog" aria-label="${esc(t.cards[k][0])}">
         <span class="num">${i + 1}</span>
         <div class="ic">${ICON[k]}</div>
-        <h2>${esc(t.cards[k][0])}</h2>
+        <h2>${esc(t.cards[k][0]).replace(' / ', ' /<br>')}</h2>
         ${t.cards[k][1] ? `<p>${esc(t.cards[k][1])}</p>` : ''}
         ${mini(k)}
       </button>`).join('');
@@ -73,6 +74,8 @@
         ${items.map(([n, v]) => `<div class="sk">${n}${lvl(v)}</div>`).join('')}</div>`).join('')}</div>`; },
     journey() { const j = T().journey; return head('journey', j) + `
       <div class="timeline">${S.journey[lang].map(([w, b, l]) => `<div class="t"><div class="when">${w}</div><b>${b}</b><ul>${l.map(x => `<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>`; },
+    talks() { const t = T().talks; const list = a => `<div class="timeline">${a.map(([w, b, d]) => `<div class="t"><div class="when">${w}</div><b>${b}</b>${d ? `<p style="margin:2px 0 0;font-size:14px">${d}</p>` : ''}</div>`).join('')}</div>`;
+      return head('talks', t) + `<h4>🎤 ${t.speaker}</h4>${list(S.talks.speaker)}<h4>🏆 ${t.showcase}</h4>${list(S.talks.showcase)}`; },
     qda() { const q = T().qda; return head('qda', q) + `<p>${q.p}</p>
       <div class="btns"><a class="btn primary" href="${S.links.qda}" target="_blank" rel="noopener">🔬 ${q.open} ↗</a></div>
       <p style="margin-top:10px;font-size:13px;color:var(--muted)">${S.links.qda.replace('https://', '')}</p>`; },
