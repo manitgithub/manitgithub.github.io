@@ -28,7 +28,7 @@
     if (k === 'skills') return `<div class="mini">${[['🖥️', 'Frontend', '#2f6bff'], ['🗄️', 'Backend', '#7b4dff'], ['💾', 'Database', '#13a37a'], ['🛠️', 'DevOps & Tools', '#e2553a']]
       .map(([e, n, c]) => `<div class="row"><b style="--rc:${c}">${e}</b>${n}</div>`).join('')}</div>`;
     if (k === 'journey') return `<div class="mini"><div class="tl"><span>2009<small>ปากพูน</small></span><span>2015<small>WU</small></span><span>${lang === 'th' ? 'ตอนนี้' : 'Now'}<small>SA</small></span></div></div>`;
-    if (k === 'contact') return `<div class="mini"><div class="row"><b style="--rc:#1f8f4e">📞</b>093-146-4976</div><div class="row"><b style="--rc:#1877f2">f</b>Facebook</div><div class="row"><b style="--rc:#30363d">⌥</b>GitHub</div><div class="row"><b style="--rc:#111;box-shadow:inset 0 0 0 1px #25f4ee">♪</b>TikTok</div></div>`;
+    if (k === 'contact') return `<div class="mini"><div class="row"><b style="--rc:#1f8f4e">📞</b>093-146-4976</div><div class="row"><b style="--rc:#06c755">L</b>LINE</div><div class="row"><b style="--rc:#1877f2">f</b>Facebook</div><div class="row"><b style="--rc:#111;box-shadow:inset 0 0 0 1px #25f4ee">♪</b>TikTok</div></div>`;
     if (k === 'coffee') return `<div class="mini"><div class="qrmini"><i>▦</i><span>${t.coffeeMini}</span></div></div>`;
     if (k === 'qda') return `<div class="mini"><div class="row" style="justify-content:center"><b style="--rc:#13a37a">🔗</b>${t.qda.mini} ↗</div></div>`;
     if (k === 'work') return `<p style="margin-top:8px;font-weight:600;color:#fff">${projectTotal} ${t.projectsCount}</p>`;
@@ -51,6 +51,7 @@
   const lvl = n => `<span class="lvl l${n}">${T().levels[n - 1]}</span>`;
   const contactBtns = () => `<div class="btns">
       <a class="btn primary" href="tel:${S.phone}">📞 093-146-4976</a>
+      <a class="btn" href="${S.links.line}" target="_blank" rel="noopener" style="background:#06c755;border-color:#06c755;color:#fff">LINE ↗</a>
       <a class="btn" href="${S.links.facebook}" target="_blank" rel="noopener">Facebook ↗</a>
       <a class="btn" href="${S.links.github}" target="_blank" rel="noopener">GitHub ↗</a>
       <a class="btn" href="${S.links.tiktok}" target="_blank" rel="noopener">TikTok @chip2ev ↗</a></div>`;

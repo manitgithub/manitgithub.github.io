@@ -7,6 +7,7 @@ window.SITE = {
     github: 'https://github.com/manitgithub',
     facebook: 'https://www.facebook.com/charib.chipchip',
     tiktok: 'https://www.tiktok.com/@chip2ev',
+    line: 'https://line.me/ti/p/~incharib',
     qda: 'https://nurseapp.hccrg.org/',
   },
 
