@@ -6,7 +6,7 @@ window.SITE = {
   links: {
     github: 'https://github.com/manitgithub',
     facebook: 'https://www.facebook.com/charib.chipchip',
-    appkm: 'https://appkm.com',
+    tiktok: 'https://www.tiktok.com/@chip2ev',
     qda: 'https://nurseapp.hccrg.org/',
   },
 
