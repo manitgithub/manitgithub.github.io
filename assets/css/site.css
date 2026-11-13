@@ -78,10 +78,19 @@ button{font:inherit;color:inherit}
   box-shadow:0 0 0 1px rgba(255,255,255,.05) inset,0 0 26px color-mix(in srgb,var(--c) 55%,transparent),0 18px 40px rgba(0,0,0,.45);
   backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
   transform:translate(var(--cx,0),var(--cy,0)) rotate(var(--r,0deg));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
-  animation:bob 6s ease-in-out infinite;animation-delay:var(--d,0s);opacity:0;animation-fill-mode:both}
+  animation:float var(--dur,7s) ease-in-out infinite;animation-delay:var(--d,0s);opacity:0;animation-fill-mode:both;will-change:translate,rotate}
 .stage.ready .card{opacity:1;transition:opacity .6s,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
 .card:hover,.card:focus-visible{transform:translate(var(--cx,0),calc(var(--cy,0px) - 8px)) rotate(0deg) scale(1.05);box-shadow:0 0 0 1px rgba(255,255,255,.1) inset,0 0 44px color-mix(in srgb,var(--c) 80%,transparent),0 24px 50px rgba(0,0,0,.5);outline:none;animation-play-state:paused}
-@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes float{
+  0%,100%{translate:0 0;rotate:0deg}
+  25%{translate:var(--fx,6px) calc(var(--fy,14px) * -1);rotate:var(--fr,1.2deg)}
+  50%{translate:0 calc(var(--fy,14px) * -1.4);rotate:0deg}
+  75%{translate:calc(var(--fx,6px) * -1) calc(var(--fy,14px) * -.6);rotate:calc(var(--fr,1.2deg) * -1)}}
+.card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;box-shadow:0 0 34px 4px color-mix(in srgb,var(--c) 70%,transparent);opacity:.25;animation:glow var(--gdur,3.2s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes glow{50%{opacity:.85}}
+.card .ic{animation:icbob 2.8s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes icbob{50%{transform:translateY(-3px) scale(1.06)}}
+.card:hover::after{opacity:1;animation:none}
 .card .num{position:absolute;top:10px;right:14px;font-size:11px;color:var(--muted);font-family:var(--mono)}
 .card .ic{width:52px;height:52px;margin:0 auto 10px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:color-mix(in srgb,var(--c) 30%,#0b0f1a);border:1px solid color-mix(in srgb,var(--c) 60%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--c) 45%,transparent)}
 .card .ic img{width:100%;height:100%;border-radius:13px;object-fit:cover}
@@ -101,6 +110,14 @@ button{font:inherit;color:inherit}
 .mini .qrmini i{width:40px;height:40px;border-radius:6px;background:#fff;display:grid;place-items:center;font-style:normal;color:#003d6a;font-size:22px}
 .mini .qrmini span{font-size:12px;line-height:1.4}
 
+/* each card floats on its own path */
+.card[data-k="about"]{--dur:7s;--fx:7px;--fy:14px;--fr:1.4deg}
+.card[data-k="work"]{--dur:8.5s;--fx:-6px;--fy:12px;--fr:-1deg}
+.card[data-k="contact"]{--dur:7.6s;--fx:8px;--fy:16px;--fr:1.6deg}
+.card[data-k="skills"]{--dur:9s;--fx:-8px;--fy:13px;--fr:-1.3deg}
+.card[data-k="journey"]{--dur:6.8s;--fx:6px;--fy:15px;--fr:1.1deg}
+.card[data-k="coffee"]{--dur:8s;--fx:-7px;--fy:17px;--fr:-1.5deg}
+.card[data-k="qda"]{--dur:7.2s;--fx:9px;--fy:12px;--fr:1.2deg}
 /* desktop positions */
 .card[data-k="about"]  {--c:var(--blue);  left:5%;  top:13%; --r:-4deg; --d:0s}
 .card[data-k="work"]   {--c:var(--violet);left:calc(50% - 340px); top:5%; --r:-3deg; --d:-1s}
@@ -224,6 +241,7 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .person-fallback{bottom:12vh;width:44vw}
   .card{width:30vw;max-width:170px;padding:9px 8px 9px;border-radius:16px;z-index:10}
   .card .num{top:6px;right:9px;font-size:9px}
+  .card{--fy:9px!important;--fx:4px!important}
   .card .ic{width:34px;height:34px;border-radius:10px;font-size:18px;margin-bottom:5px}
   .card .ic img{border-radius:9px}
   .card h2{font-size:14px;margin-bottom:4px}
@@ -268,4 +286,4 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .card[data-k="coffee"],.card[data-k="qda"]{top:52%}
 }
 @media (max-width:420px){.avail span{display:none}.avail{padding:8px}}
-@media (prefers-reduced-motion:reduce){.card,.bokeh,.person-fallback .halo,.avail i{animation:none}.bg,.person{transition:none}}
+@media (prefers-reduced-motion:reduce){.card,.card::after,.card .ic,.bokeh,.person-fallback .halo,.avail i{animation:none}.bg,.person{transition:none}}
