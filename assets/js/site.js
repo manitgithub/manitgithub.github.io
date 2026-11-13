@@ -3,7 +3,7 @@
   const store = { get: k => { try { return localStorage.getItem(k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem(k, v) } catch (e) {} } };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const AVATAR = `https://github.com/${S.github}.png?size=200`;
-  const ORDER = ['about', 'work', 'contact', 'skills', 'journey', 'coffee', 'qda', 'talks'];
+  const ORDER = ['about', 'work', 'talks', 'skills', 'journey', 'coffee', 'qda'];
   const ICON = { about: `<img src="${AVATAR}" alt="" onerror="this.replaceWith('👋')">`, work: '🧩', contact: '💬', skills: '⚡', journey: '🕒', coffee: '☕', qda: '🔬', talks: '🎤' };
   const COLOR = { about: 'var(--blue)', work: 'var(--violet)', contact: 'var(--cyan)', skills: 'var(--blue)', journey: 'var(--amber)', coffee: 'var(--pink)', qda: 'var(--green)', talks: 'var(--gold)' };
   let lang = new URLSearchParams(location.search).get('lang') || store.get('lang') || 'th';
@@ -24,7 +24,7 @@
   function mini(k) {
     const t = T();
     if (k === 'about') return `<div class="mini"><div class="stats"><div><strong>10+</strong><small>${t.yrs}</small></div><div><strong>50+</strong><small>${t.systems}</small></div></div>
-      <div class="row" style="justify-content:center"><b style="--rc:var(--green);width:8px;height:8px;border-radius:50%"></b>${t.sayHello} · f · gh</div></div>`;
+      <div class="row" style="justify-content:center"><b style="--rc:var(--green);width:8px;height:8px;border-radius:50%"></b>${t.sayHello} · ☎ · LINE · f</div></div>`;
     if (k === 'skills') return `<div class="mini">${[['🖥️', 'Frontend', '#2f6bff'], ['🗄️', 'Backend', '#7b4dff'], ['💾', 'Database', '#13a37a'], ['🛠️', 'DevOps & Tools', '#e2553a']]
       .map(([e, n, c]) => `<div class="row"><b style="--rc:${c}">${e}</b>${n}</div>`).join('')}</div>`;
     if (k === 'journey') return `<div class="mini"><div class="tl"><span>2009<small>ปากพูน</small></span><span>2015<small>WU</small></span><span>${lang === 'th' ? 'ตอนนี้' : 'Now'}<small>SA</small></span></div></div>`;
@@ -169,5 +169,5 @@
   $('#year').textContent = new Date().getFullYear();
   applyText();
   requestAnimationFrame(() => $('#stage').classList.add('ready'));
-  const h = location.hash.slice(1); if (ORDER.includes(h)) open(h);
+  const h = location.hash.slice(1) === 'contact' ? 'about' : location.hash.slice(1); if (ORDER.includes(h)) open(h);
 })();

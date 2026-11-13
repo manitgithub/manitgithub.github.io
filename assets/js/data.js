@@ -20,7 +20,7 @@ window.SITE = {
       hint: 'แตะการ์ดเพื่อดูรายละเอียด',
       footer: 'ทำด้วยใจและกาแฟหลายแก้ว',
       cards: {
-        about:   ['เกี่ยวกับผม', ''],
+        about:   ['เกี่ยวกับผม & ติดต่อ', ''],
         work:    ['ผลงาน', 'ระบบสารสนเทศสำหรับมหาวิทยาลัย โรงพยาบาล ธุรกิจ และหน่วยงานรัฐ'],
         contact: ['ติดต่อ', ''],
         skills:  ['ทักษะ', ''],
@@ -70,7 +70,7 @@ window.SITE = {
       hint: 'Tap a card to explore',
       footer: 'made with care and several cups of coffee',
       cards: {
-        about:   ['About', ''],
+        about:   ['About & Contact', ''],
         work:    ['Work', 'Information systems for universities, hospitals, businesses and government.'],
         contact: ['Contact', ''],
         skills:  ['Tech Stack', ''],

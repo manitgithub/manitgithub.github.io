@@ -125,8 +125,8 @@ button{font:inherit;color:inherit}
 .card[data-k="contact"]{--c:var(--cyan);  left:calc(50% + 128px); top:5%; --r:3deg;  --d:-2s}
 .card[data-k="skills"] {--c:var(--blue);  right:5%; top:17%; --r:4deg;  --d:-3s}
 .card[data-k="journey"]{--c:var(--amber); left:10%; top:63%; --r:-3deg; --d:-4s}
-.card[data-k="coffee"] {--c:var(--pink);  right:3%;top:51%; --r:3deg;  --d:-5s}
-.card[data-k="talks"]  {--c:var(--gold);  right:calc(3% + 226px);top:46%; --r:-2deg; --d:-7s}
+.card[data-k="coffee"] {--c:var(--pink);  right:7%;top:52%; --r:3deg;  --d:-5s}
+.card[data-k="talks"]  {--c:var(--gold);  left:calc(50% + 128px); top:5%; --r:3deg; --d:-7s}
 .card[data-k="qda"]    {--c:var(--green); left:15%; top:40%; --r:2deg;  --d:-6s}
 
 /* ---------- headline ---------- */
@@ -220,7 +220,7 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .card{width:190px;padding:14px 12px}
   .card p{font-size:12px}
   .card[data-k="about"]{left:3%}.card[data-k="skills"]{right:3%}
-  .card[data-k="journey"]{left:4%}.card[data-k="coffee"]{right:2%}.card[data-k="talks"]{right:calc(2% + 200px)}
+  .card[data-k="journey"]{left:4%}.card[data-k="coffee"]{right:4%}.card[data-k="talks"]{left:calc(50% + 110px)}
   .card[data-k="work"]{left:calc(50% - 300px);top:9%}.card[data-k="contact"]{left:calc(50% + 110px)}
 }
 @media (min-width:821px) and (max-height:800px){
@@ -228,7 +228,7 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .card .ic{width:42px;height:42px;font-size:21px;margin-bottom:6px}
   .card h2{font-size:17px;margin-bottom:4px}
   .mini .row{padding:4px 8px;font-size:12px}
-  .card[data-k="journey"]{top:67%}.card[data-k="coffee"]{top:51%}.card[data-k="talks"]{top:47%;right:calc(3% + 192px)}.card[data-k="about"]{top:12%}.card[data-k="qda"]{top:39%}
+  .card[data-k="journey"]{top:67%}.card[data-k="coffee"]{top:51%}.card[data-k="about"]{top:12%}.card[data-k="qda"]{top:39%}
   .headline h1 strong{font-size:clamp(36px,4.4vw,60px)}
   .headline h1 small{font-size:20px}
   .headline{bottom:40px}
@@ -265,8 +265,9 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .card[data-k="coffee"] {left:3%;  right:auto; top:58%; --r:-2deg}
   .card[data-k="qda"]    {right:3%; left:auto; top:56%; --r:2deg}
   .card[data-k="qda"] h2,.card[data-k="talks"] h2{font-size:12px;line-height:1.35}
-  .card[data-k="talks"] {left:3%; right:auto; top:76%; --r:-2deg}
-  .card[data-k="talks"] .mini{display:none}
+  .card[data-k="talks"] {right:2%; left:auto; top:35%; --r:3deg}
+  .card[data-k="talks"] .mini .row{white-space:nowrap}
+  .card[data-k="about"] .mini .row{display:none}
   .headline{right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:12}
   .headline h1 small{font-size:18px}
   .headline h1 strong{font-size:44px}
@@ -288,7 +289,7 @@ kbd{font-family:var(--mono);font-size:11px;padding:1px 5px;border:1px solid var(
   .card .mini{display:none}
   .card[data-k="journey"],.card[data-k="contact"]{top:33%}
   .card[data-k="coffee"],.card[data-k="qda"]{top:52%}
-  .card[data-k="talks"]{top:71%}
+  .card[data-k="talks"]{top:33%}
 }
 @media (max-width:420px){.avail span{display:none}.avail{padding:8px}}
 @media (prefers-reduced-motion:reduce){.card,.card::after,.card .ic,.bokeh,.person-fallback .halo,.avail i{animation:none}.bg,.person{transition:none}}
