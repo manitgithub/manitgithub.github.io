@@ -143,11 +143,13 @@ window.SITE = {
   journey: {
     th: [
       ['2558 (2015) — ปัจจุบัน', 'เจ้าหน้าที่วิเคราะห์ระบบ · มหาวิทยาลัยวลัยลักษณ์', ['วิเคราะห์ ออกแบบ และพัฒนาระบบสารสนเทศของมหาวิทยาลัย', 'ดูแลระบบฐานข้อมูล และให้คำปรึกษาด้านไอทีแก่หน่วยงานต่าง ๆ']],
-      ['2020 — ปัจจุบัน', 'Freelance Developer', ['รับพัฒนาระบบและแอปพลิเคชันให้ธุรกิจและหน่วยงาน', 'ขยายทักษะสู่ React, Next.js และ AI Integration']],
+      ['2555 (2012) — ปัจจุบัน', 'Freelance Developer', ['รับพัฒนาระบบและแอปพลิเคชันให้ธุรกิจและหน่วยงาน', 'ขยายทักษะสู่ React, Next.js และ AI Integration']],
+      ['2552 — 2555 (2009 — 2012)', 'เทศบาลเมืองปากพูน', ['พัฒนาระบบสุขภาวะตำบล', 'พัฒนาระบบสวัสดิการชุมชน']],
     ],
     en: [
       ['2015 — Present', 'System Analyst · Walailak University', ['Analyse, design and build the university’s information systems', 'Maintain databases and advise departments on IT']],
-      ['2020 — Present', 'Freelance Developer', ['Build systems and apps for businesses and organisations', 'Expanding into React, Next.js and AI integration']],
+      ['2012 — Present', 'Freelance Developer', ['Build systems and apps for businesses and organisations', 'Expanding into React, Next.js and AI integration']],
+      ['2009 — 2012', 'Pak Phun Town Municipality', ['Developed the sub-district health and well-being system', 'Developed the community welfare system']],
     ],
   },
 };
